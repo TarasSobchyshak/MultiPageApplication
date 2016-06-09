@@ -1,0 +1,34 @@
+﻿<UserControl
+    x:Name="pn"
+    x:Class="MultiPageApplication.CustomControls.PageNavigator.PageNavigator"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MultiPageApplication.CustomControls.PageNavigator"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,4"/>
+            <Setter Property="Background" Value="Gold"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Border BorderThickness="1" BorderBrush="White">
+        <Grid x:Name="gridName" Background="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <Button Content="Back" Command="{Binding Back}"/>
+                <Button Content="Forward" Command="{Binding Forward}"/>
+                <Button Content="Clear history" Command="{Binding ClearHistory}"/>
+            </StackPanel>
+            <!--<Frame x:Name="mainFrame" Grid.Row="1"/>-->
+        </Grid>
+    </Border>
+</UserControl>

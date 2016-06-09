@@ -1,0 +1,69 @@
+﻿<Page
+    x:Name="carCompanyName"
+    x:Class="MultiPageApplication.CarCompany.Views.CarCompanyCatalogue"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MultiPageApplication.CarCompany.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:cp="using:MultiPageApplication.PageNavigator.CarPresenter"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:MultiPageApplication.CarCompany.ViewModels"
+    mc:Ignorable="d">
+    <!--<Page.DataContext>
+        <vm:CarCompanyCatalogueViewModel/>
+    </Page.DataContext>-->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text="Car company catalogue" 
+                   FontSize="40" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top"
+                   Margin="10"/>
+
+        <StackPanel Grid.Row="1">
+            <TextBox Margin="20" Text="{Binding ElementName=carCompanyName, Path=TextValue, Mode=TwoWay}"/>
+            <Button Content="Show cars" Margin="20" FontSize="20" Click="Button_Click"/>
+        </StackPanel>
+
+        <ListView Grid.Row="2"
+                  ItemsSource="{Binding ElementName=carCompanyName, Path=Cars, Mode=TwoWay}"
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  Background="Gold"
+                  BorderThickness="2" 
+                  BorderBrush="White"
+                  Margin="10">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="Car company" 
+                                   Foreground="Black"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center" 
+                                   FontStyle="Italic"
+                                   FontSize="24"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <cp:CarPresenter Height="200" VerticalAlignment="Stretch" Margin="10"
+                        Brand="{Binding Path=Brand}"
+                        Year="{Binding Path=Year}"
+                        Mileage="{Binding Path=Mileage}"
+                        Price="{Binding Path=Price}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
